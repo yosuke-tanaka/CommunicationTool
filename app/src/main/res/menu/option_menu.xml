@@ -13,7 +13,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="jp.techacademy.tanaka.yousuke.communicationtool.MainActivity">
     <item android:id="@+id/scan"
           android:icon="@android:drawable/ic_menu_search"
           android:title="@string/connect" />

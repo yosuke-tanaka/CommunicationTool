@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -38,13 +39,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import jp.techacademy.tanaka.yousuke.communicationtool.R;
 
 /**
  * This is the main Activity that displays the current chat session.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     // Debugging
     private static final String TAG = "BluetoothChat";
     private static final boolean D = true;
@@ -65,7 +67,7 @@ public class MainActivity extends Activity {
     private static final int REQUEST_ENABLE_BT = 2;
 
     // Layout Views
-    private TextView mTitle;
+    //private TextView mTitle;
     private ListView mConversationView;
     private EditText mOutEditText;
     private Button mSendButton;
@@ -85,17 +87,23 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // ツールバーをアクションバーとしてセット
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
         if(D) Log.e(TAG, "+++ ON CREATE +++");
 
-        // Set up the window layout
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.activity_main);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
+        //// Set up the window layout
+        //requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        //setContentView(R.layout.activity_main);
+        //getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
 
         // Set up the custom title
-        mTitle = (TextView) findViewById(R.id.title_left_text);
-        mTitle.setText(R.string.app_name);
-        mTitle = (TextView) findViewById(R.id.title_right_text);
+        //mTitle = (TextView) findViewById(R.id.title_left_text);
+        //mTitle.setText(R.string.app_name);
+        //mTitle = (TextView) findViewById(R.id.title_right_text);
 
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -248,16 +256,16 @@ public class MainActivity extends Activity {
                     if(D) Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
                     switch (msg.arg1) {
                         case BluetoothChatService.STATE_CONNECTED:
-                            mTitle.setText(R.string.title_connected_to);
-                            mTitle.append(mConnectedDeviceName);
+                            //mTitle.setText(R.string.title_connected_to);
+                            //mTitle.append(mConnectedDeviceName);
                             mConversationArrayAdapter.clear();
                             break;
                         case BluetoothChatService.STATE_CONNECTING:
-                            mTitle.setText(R.string.title_connecting);
+                            //mTitle.setText(R.string.title_connecting);
                             break;
                         case BluetoothChatService.STATE_LISTEN:
                         case BluetoothChatService.STATE_NONE:
-                            mTitle.setText(R.string.title_not_connected);
+                            //mTitle.setText(R.string.title_not_connected);
                             break;
                     }
                     break;
